@@ -42,7 +42,7 @@ export const toggleTodoAsync = createAsyncThunk<Todo, number>(
 );
 
 const initialState: TodoState = {
-  items: [{ id: 1, title: "Create todo list", done: true }],
+  items: [],
   loading: false,
   error: null,
 };

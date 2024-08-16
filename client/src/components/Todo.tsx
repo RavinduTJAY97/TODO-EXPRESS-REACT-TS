@@ -54,8 +54,9 @@ const TodoList: React.FC = () => {
   return (
     <div className="todo-container">
       <h1>Todo List</h1>
-      <div className="new-task">
+      <div className="task-input">
         <input
+          className="new-task-input"
           type="text"
           placeholder="New task title"
           value={newTask}
@@ -65,12 +66,16 @@ const TodoList: React.FC = () => {
           <Add style={{ color: "#9055ee", marginBottom: "26px" }} />
         </IconButton>
       </div>
-      <input
-        type="text"
-        placeholder="Search tasks..."
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-      />
+      <div className="task-input">
+        <input
+          className="search-input"
+          type="text"
+          placeholder="Search tasks..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+      </div>
+
       <table>
         <thead>
           <tr>
