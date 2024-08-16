@@ -1,10 +1,8 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { TodoState } from "../types";
-
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
-import { Todo } from "../types";
+import { Todo, TodoState } from "../types";
 
+// Fetch todo list
 export const fetchTodos = createAsyncThunk<Todo[]>(
   "todos/fetchTodos",
   async () => {
@@ -53,7 +51,50 @@ const todoSlice = createSlice({
   name: "todos",
   initialState,
   reducers: {},
-  extraReducers: (builder) => {},
+  extraReducers: (builder) => {
+    builder
+      // Fetch Todo list
+      .addCase(fetchTodos.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchTodos.fulfilled, (state, action) => {
+        state.loading = false;
+        state.items = [...state.items, ...action.payload];
+      })
+      .addCase(fetchTodos.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message || "Something went wrong";
+      })
+
+      // Add Todo
+      .addCase(addTodoAsync.fulfilled, (state, action: PayloadAction<Todo>) => {
+        state.items.push(action.payload);
+      })
+
+      // Delete Todo
+      .addCase(
+        deleteTodoAsync.fulfilled,
+        (state, action: PayloadAction<number>) => {
+          state.items = state.items.filter(
+            (todo) => todo.id !== action.payload
+          );
+        }
+      )
+
+      // Toggle Todo
+      .addCase(
+        toggleTodoAsync.fulfilled,
+        (state, action: PayloadAction<Todo>) => {
+          const todo = state.items.find(
+            (todo) => todo.id === action.payload.id
+          );
+          if (todo) {
+            todo.done = action.payload.done;
+          }
+        }
+      );
+  },
 });
 
 export default todoSlice.reducer;
