@@ -2,19 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchTodos,
+  addTodoAsync,
   toggleTodoAsync,
   deleteTodoAsync,
-  addTodoAsync,
 } from "../redux/tasksSlice";
 import { RootState, AppDispatch } from "../redux/store";
 import { IconButton } from "@mui/material";
-import {
-  Delete,
-  CheckCircle,
-  RadioButtonUnchecked,
-  Add,
-} from "@mui/icons-material";
 import "../todoStyles.css";
+import { Add } from "@mui/icons-material";
 
 const TodoList: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -35,18 +30,6 @@ const TodoList: React.FC = () => {
       setNewTask("");
     }
   };
-
-  const handleDeleteTask = (id: number) => {
-    dispatch(deleteTodoAsync(id));
-  };
-
-  const handleToggleTask = (id: number) => {
-    dispatch(toggleTodoAsync(id));
-  };
-
-  const filteredTasks = items.filter((todo) =>
-    todo.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
@@ -81,29 +64,12 @@ const TodoList: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredTasks.map((todo, index) => (
+          {items.map((todo, index) => (
             <tr key={todo.id}>
               <td>{index + 1}</td>
               <td>{todo.title}</td>
               <td>{todo.done ? "Done" : "Not Done"}</td>
-              <td>
-                <IconButton
-                  onClick={() => handleToggleTask(todo.id)}
-                  aria-label="toggle"
-                >
-                  {todo.done ? (
-                    <CheckCircle style={{ color: "#9055ee" }} />
-                  ) : (
-                    <RadioButtonUnchecked />
-                  )}
-                </IconButton>
-                <IconButton
-                  onClick={() => handleDeleteTask(todo.id)}
-                  aria-label="delete"
-                >
-                  <Delete style={{ color: "#9055ee" }} />
-                </IconButton>
-              </td>
+              <td></td>
             </tr>
           ))}
         </tbody>
