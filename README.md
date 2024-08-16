@@ -62,4 +62,7 @@ npm start
 The application should now be running at http://localhost:3000.
 
 **Application Preview**
-![Screenshot 2024-08-16 164326](https://github.com/user-attachments/assets/4104c6da-f722-44da-88eb-33db3d80c04f)
+
+![image](https://github.com/user-attachments/assets/8b36b425-363c-4cd6-a89f-306d61ea00a3)
+
+
