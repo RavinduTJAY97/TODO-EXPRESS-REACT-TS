@@ -49,7 +49,7 @@ router.put("/:id", (req, res) => {
   }
 });
 
-// DELETE /tasks/:id - Delete a task
+// DELETE /tasks/:id - Delete a tasks
 router.delete("/:id", (req, res) => {
   const taskId = parseInt(req.params.id);
   const taskIndex = tasks.findIndex((task) => task.id === taskId);
