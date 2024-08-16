@@ -34,6 +34,15 @@ export const deleteTodoAsync = createAsyncThunk<number, number>(
   }
 );
 
+// Toggle | Mark done / not done
+export const toggleTodoAsync = createAsyncThunk<Todo, number>(
+  "todos/toggleTodo",
+  async (id) => {
+    const response = await axios.put(`http://localhost:5000/tasks/${id}`);
+    return response.data;
+  }
+);
+
 const initialState: TodoState = {
   items: [{ id: 1, title: "Create todo list", done: true }],
   loading: false,
