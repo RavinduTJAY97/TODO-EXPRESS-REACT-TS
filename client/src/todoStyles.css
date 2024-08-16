@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+.todo-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 56px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+h1 {
+  color: #9055ee;
+}
+
+.new-task {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.new-task input {
+  width: 75%;
+  padding: 10px;
+  border: 2px solid #9055ee;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #9055ee;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th,
+td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #9055ee;
+  color: white;
+}
+
+tr:hover {
+  background-color: #f9f9f9;
+}
+
+button,
+input,
+IconButton {
+  font-size: 16px;
+}
